@@ -323,11 +323,11 @@ end.run <- Sys.timeDate()
 print(start.run)
 print(end.run)
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/CAD US EX/CSV Files")
+setwd("~/Outputs - CSV")
 write.csv(as.data.frame(as.list(price.hist.fc.list)),file=paste("USD-CAD Monte Carlo - ",n," Price Series (",as.character(Sys.Date()),").csv",sep=""))
 write.csv(as.data.frame(as.list(price.hist.fc.list)),file=paste("USD-CAD Monte Carlo - ",n," Price Series (most recent).csv",sep=""))
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/PDF R-Reports/50 Years")
+setwd("~/Outputs - PDF")
 pdf(file="USD-CAD Exchange Volatility Report.pdf")
 #Plot of Historical CAD-USD Exchange with Mean Reversion
 plot(cad.usd.ex.m,ylim=c(0,2))

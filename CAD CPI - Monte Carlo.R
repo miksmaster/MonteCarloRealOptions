@@ -93,7 +93,7 @@ for (i in 2:n) {
 }
 
 # Write CSV files for future use
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/CAD US CPI/CSV Files") # Working directory at the Office
+setwd("~/Outputs - CSV") # Working directory at the Office
 #write.csv(cpi.cad.m.last.index,file=paste("Canada Historical CPI - Index Year ",index.year.cpi.cad,".csv",sep=""))
 #write.csv(forecast.ts.cad,file=paste("Canada Forecast CPI - Index Year ",index.year.cpi.cad,".csv",sep=""))
 write.csv(cpi.cad.m.hist.fc,file=paste("Canada Hist, FC CPI.csv",sep=""))
@@ -130,7 +130,7 @@ while (c1 < n)
 	c1 <- c1 + trunc(n/10)
 }
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/PDF R-Reports/50 Years")
+setwd("~/Outputs - PDF")
 pdf(file="Canada CPI Volatility Report.pdf")
 #Plot of Historical Canada CPI
 plot(cpi.cad.m.last.index,main="Canada Historical CPI",xlab="",ylab=paste("Canada CPI: Indexed to ",index.year.cpi.cad,sep=""))

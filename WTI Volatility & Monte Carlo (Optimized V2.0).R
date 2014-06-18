@@ -34,7 +34,7 @@ cpi.base.year.end <- as.Date(paste(cpi.base.year,"-12-31",sep=""),"%Y-%m-%d")
 WTI_start_date <- "1960-01-01"
 
 # Set working directory path for WTI import
-pathdir.wti = "C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/WTI Pricing/CSV Files/50 Years/"
+pathdir.wti = "~/Outputs - CSV"
 setwd(pathdir.wti)
 # Import WTI Historical Prices
 ###wti.spot <- read.csv("cl01.csv")
@@ -386,11 +386,11 @@ print(start.run)
 print(end.run)
 
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/WTI Pricing/CSV Files/50 Years")
+setwd("~/Outputs - CSV")
 write.csv(as.data.frame(as.list(price.hist.fc.list)),file=paste("WTI Monte Carlo - ",n," Price Series (",as.character(end(wti.spot.d)),").csv",sep=""))
 write.csv(as.data.frame(as.list(price.hist.fc.list)),file=paste("WTI Monte Carlo - ",n," Price Series (most recent).csv",sep=""))
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/PDF R-Reports/50 Years")
+setwd("~/Outputs - PDF")
 pdf(file="WTI Volatility Report.pdf")
 #Plot of Nominal Historical WTI
 plot(wti.spot.m.nom,type="l",format="%Y",col="red",main="Historical WTI Nominal Prices ($US)",xlab="Time",ylab="$US")

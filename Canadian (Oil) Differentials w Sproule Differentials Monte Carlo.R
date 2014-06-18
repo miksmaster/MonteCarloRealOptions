@@ -15,7 +15,7 @@ file.name.m <- "Monthly Historical Edmonton Light and Hardisty Heavy Crude Price
 file.name.d <- "Daily Historical Edmonton Light and Hardisty Heavy Crude Prices.csv"
 
 ### File Path to folder that contains the above files
-path <- "C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/Canadian Price Differentials"
+path <- "~/Outputs - CSV"
 setwd(path)
 
 ### Import Monthly and Daily Data
@@ -296,19 +296,19 @@ last.m.hardh <- month(last.date.hardh)
 ##################################################################################################################################
 #### Import Necessary Pricing Files
 # WTI Import
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/WTI Pricing/CSV Files/50 Years")
+setwd("~/Outputs - CSV")
 wti.hist.fc.upload <- read.csv("WTI Monte Carlo - 1000 Price Series (most recent).csv",header=TRUE,sep=",",dec=".")
 wti.dates <- as.character(wti.hist.fc.upload[,1])
 wti.values <- as.matrix(wti.hist.fc.upload[,-1])
 wti.hist.fc.ts <- timeSeries(wti.values,wti.dates)
 # USD-CAD Exchange Import
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/CAD US EX/CSV Files")
+setwd("~/Outputs - CSV")
 usd.cad.ex.hist.fc.upload <- read.csv("USD-CAD Monte Carlo - 1000 Price Series (most recent).csv",header=TRUE,sep=",",dec=".")
 usd.cad.ex.dates <- as.character(usd.cad.ex.hist.fc.upload[,1])
 usd.cad.ex.values <- as.matrix(usd.cad.ex.hist.fc.upload[,-1])
 usd.cad.ex.hist.fc.ts <- timeSeries(usd.cad.ex.values,usd.cad.ex.dates)
 # US CPI Import
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/CAD US CPI/CSV Files")
+setwd("~/Outputs - CSV")
 cpi.index.year <- year(Sys.Date())-1
 us.cpi.hist.fc.upload <- read.csv(paste("US Hist, FC CPI - Index Year ",cpi.index.year,".csv",sep=""),header=TRUE,sep=",",dec=".")
 us.cpi.dates <- as.character(us.cpi.hist.fc.upload[,1])
@@ -387,11 +387,11 @@ hardh.real.cad.hist.fc.ts <- rbind(hardh.hist,hardh.real.cad.fc.ts[,1])
 for (i in 2:length(hardh.real.cad.fc.ts[1,])){
 	hardh.real.cad.hist.fc.ts <- cbind(hardh.real.cad.hist.fc.ts,rbind(hardh.hist,hardh.real.cad.fc.ts[,i]))}
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/WTI Pricing/CSV Files/50 Years")
+setwd("~/Outputs - CSV")
 write.csv(wti.real.mh.fc.ts,file=paste("WTI (Real,USD) Monte Carlo - ",n," series (most recent).csv",sep=""))
 write.csv(wti.real.cad.mh.fc.ts,file=paste("WTI (Real,CAD) Monte Carlo - ",n," series (most recent).csv",sep=""))
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/Canadian Prices")
+setwd("~/Outputs - CSV")
 write.csv(edml.real.cad.hist.fc.ts,file=paste("EdmL (Real,CAD) Monte Carlo - ",n," series (most recent).csv",sep=""))
 write.csv(hardh.real.cad.hist.fc.ts,file=paste("HardH (Real,CAD) Monte Carlo - ",n," series (most recent).csv",sep=""))
 
@@ -409,7 +409,7 @@ current.month <- month(current.date)
 #if (current.month<10) {current.month <- paste("0",current.month,sep="")}
 #current.sproule.month <- paste(current.year,current.month,sep="")
 
-sproule.root <- "C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/Canadian Price Differentials/Sproule Historical/"
+sproule.root <- ""
 current.sproule.address <- paste(sproule.root,"Current Escalated.csv",sep="")
 #last.sproule.address <- paste(sproule.root, last.sproule.month,"-Escalated.xlsx",sep="")
 
@@ -528,7 +528,7 @@ sco.cad.hist_fc.ts <- rbind(window(sco.edm.cad.ts,start=start(sco.edm.cad.ts),en
 for (i in 1:n){
 	sco.cad.hist_fc.ts <- cbind(sco.cad.hist_fc.ts,rbind(window(sco.edm.cad.ts,start=start(sco.edm.cad.ts),end=sco.end.date),sco.real.cad.fc.ts[,i]))}
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/Canadian Prices")
+setwd("~/Outputs - CSV")
 write.csv(sco.cad.hist_fc.ts,file=paste("SCO (Real,CAD) Monte Carlo - ",n," series (most recent).csv",sep=""))
 
 
@@ -575,7 +575,7 @@ cromer.cad.hist_fc.ts <- rbind(window(cromer.cad.ts,start=start(cromer.cad.ts),e
 for (i in 1:n){
 	cromer.cad.hist_fc.ts <- cbind(cromer.cad.hist_fc.ts,rbind(window(cromer.cad.ts,start=start(cromer.cad.ts),end=cromer.end.date),cromer.real.cad.fc.ts[,i]))}
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/Canadian Prices")
+setwd("~/Outputs - CSV")
 write.csv(cromer.cad.hist_fc.ts,file=paste("Cromer (Real,CAD) Monte Carlo - ",n," series (most recent).csv",sep=""))
 
 
@@ -648,7 +648,7 @@ wcs.cad.hist_fc.ts <- rbind(window(wcs.cad.ts,start=start(wcs.cad.ts),end=wcs.en
 for (i in 1:n){
 	wcs.cad.hist_fc.ts <- cbind(wcs.cad.hist_fc.ts,rbind(window(wcs.cad.ts,start=start(wcs.cad.ts),end=wcs.end.date),wcs.real.cad.fc.ts[,i]))}
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/Canadian Prices")
+setwd("~/Outputs - CSV")
 write.csv(wcs.cad.hist_fc.ts,file=paste("WCS (Real,CAD) Monte Carlo - ",n," series (most recent).csv",sep=""))
 
 
@@ -721,7 +721,7 @@ hard.bow.r.cad.hist_fc.ts <- rbind(window(hard.bow.r.cad.ts,start=start(hard.bow
 for (i in 1:n){
 	hard.bow.r.cad.hist_fc.ts <- cbind(hard.bow.r.cad.hist_fc.ts,rbind(window(hard.bow.r.cad.ts,start=start(hard.bow.r.cad.ts),end=hard.bow.r.end.date),hard.bow.r.real.cad.fc.ts[,i]))}
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/Canadian Prices")
+setwd("~/Outputs - CSV")
 write.csv(hard.bow.r.cad.hist_fc.ts,file=paste("Hardisty Bow River (Real,CAD) Monte Carlo - ",n," series (most recent).csv",sep=""))
 
 
@@ -795,7 +795,7 @@ propane.cad.hist_fc.ts <- rbind(window(propane.cad.ts,start=start(propane.cad.ts
 for (i in 1:n){
 	propane.cad.hist_fc.ts <- cbind(propane.cad.hist_fc.ts,rbind(window(propane.cad.ts,start=start(propane.cad.ts),end=propane.end.date),propane.real.cad.fc.ts[,i]))}
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/Canadian Prices")
+setwd("~/Outputs - CSV")
 write.csv(propane.cad.hist_fc.ts,file=paste("Propane (Real,CAD) Monte Carlo - ",n," series (most recent).csv",sep=""))
 
 
@@ -842,7 +842,7 @@ butane.cad.hist_fc.ts <- rbind(window(butane.cad.ts,start=start(butane.cad.ts),e
 for (i in 1:n){
 	butane.cad.hist_fc.ts <- cbind(butane.cad.hist_fc.ts,rbind(window(butane.cad.ts,start=start(butane.cad.ts),end=butane.end.date),butane.real.cad.fc.ts[,i]))}
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/Canadian Prices")
+setwd("~/Outputs - CSV")
 write.csv(butane.cad.hist_fc.ts,file=paste("Butane (Real,CAD) Monte Carlo - ",n," series (most recent).csv",sep=""))
 
 
@@ -889,13 +889,13 @@ pentane.cad.hist_fc.ts <- rbind(window(pentane.cad.ts,start=start(pentane.cad.ts
 for (i in 1:n){
 	pentane.cad.hist_fc.ts <- cbind(pentane.cad.hist_fc.ts,rbind(window(pentane.cad.ts,start=start(pentane.cad.ts),end=pentane.end.date),pentane.real.cad.fc.ts[,i]))}
 
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/Canadian Prices")
+setwd("~/Outputs - CSV")
 write.csv(pentane.cad.hist_fc.ts,file=paste("Pentane (Real,CAD) Monte Carlo - ",n," series (most recent).csv",sep=""))
 
 
 ################# PDF Reports
 color.palate <- c("blue","green","orange","pink","red","purple","thistle","turquoise","grey","brown")
-setwd("C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/PDF R-Reports/50 Years")
+setwd("~/Outputs - PDF")
 
 ### WTI in Real USD
 pdf("WTI Volatility in Real USD.pdf")

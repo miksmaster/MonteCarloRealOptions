@@ -30,9 +30,9 @@ cpi.base.year.end <- as.Date(paste(cpi.base.year,"-12-31",sep=""),"%Y-%m-%d")
 HH_start_date <- "1993-11-01"
 
 # Set working directory path for HH import
-#pathdir.hh <- "C:/Users/don.mikalson/Dropbox/Pricing Volatility/Pricing Volatility CEC/WTI Pricing/CSV Files/50 Years/"
+#pathdir.hh <- "~/Outputs - CSV"
 pathdir <- getwd()
-pathdir.hh <- paste(pathdir, "/WTI Pricing/CSV Files/50 Years", sep="")
+#pathdir.hh <- paste(pathdir, "/WTI Pricing/CSV Files/50 Years", sep="")
 setwd(pathdir.hh)
 # Import HH Historical Prices
 ###hh.spot <- read.csv("cl01.csv")
@@ -404,7 +404,7 @@ print(end.run)
 write.csv(as.data.frame(as.list(price.hist.fc.list)),file=paste("HH Monte Carlo - ",n," Price Series (",as.character(hh.spot.d[1,1]),").csv",sep=""))
 write.csv(as.data.frame(as.list(price.hist.fc.list)),file=paste("HH Monte Carlo - ",n," Price Series (most recent).csv",sep=""))
 
-setwd(paste(pathdir,"/PDF R-Reports/50 Years",sep="")
+setwd("~/Outputs - PDF")
 pdf(file="HH Volatility Report.pdf")
 #Plot of Nominal Historical HH
 plot(hh.spot.m.nom,type="l",format="%Y",col="red",main="Historical HH Nominal Prices ($US)",xlab="Time",ylab="$US")
