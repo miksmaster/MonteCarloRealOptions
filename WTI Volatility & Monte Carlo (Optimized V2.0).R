@@ -34,8 +34,8 @@ cpi.base.year.end <- as.Date(paste(cpi.base.year,"-12-31",sep=""),"%Y-%m-%d")
 WTI_start_date <- "1960-01-01"
 
 # Set working directory path for WTI import
-pathdir.wti = "~/Outputs - CSV"
-setwd(pathdir.wti)
+pathdir.wti.csv <- paste(getwd(),"/Outputs - CSV",sep="")
+setwd(pathdir.wti.csv)
 # Import WTI Historical Prices
 ###wti.spot <- read.csv("cl01.csv")
 ###wti.spot <- as.timeSeries(wti.spot[,-1])
@@ -99,7 +99,13 @@ dev.new(); plot(wti.spot.m.nom,type="l",format="%Y",col="red",main="Historical W
 wti.spot.m.real <- wti.spot.m.nom
 cpi.us.real.m <- window(cpi.us.real,start=start(wti.spot.m.nom),end=end(wti.spot.m.nom))
 wti.spot.m.real <- wti.spot.m.nom/cpi.us.real.m*100
-if (class(wti.spot.d.m)!="try-error"){wti.spot.m.real <- rbind(wti.spot.d.m.real,wti.spot.m.real)}
+if (month(end(wti.spot.m.real))==12) {
+  daily.start.real.d.m <- as.Date(paste(year(end(wti.spot.m.real))+1,"-01-01",sep=""),"%Y-%m-%d")
+} else {
+  daily.start.real.d.m <- as.Date(paste(year(end(wti.spot.m.real)),"-",month(end(wti.spot.m.real))+1,"-01",sep=""),"%Y-%m-%d")
+}
+wti.spot.d.m.real.win <- try(window(wti.spot.d.m.real, start=daily.start.real.d.m, end=end(wti.spot.d.m.real)))
+if (class(wti.spot.d.m)!="try-error"){wti.spot.m.real <- rbind(wti.spot.d.m.real.win, wti.spot.m.real)}
 dev.new(); plot(wti.spot.m.real,type="l",format="%Y",col="red",main="Historical WTI Real Prices ($US)",xlab="Time",ylab="$US")
 
 #### Plot Histogram and Density functions of the WTI Real Prices
@@ -385,12 +391,13 @@ end.run <- Sys.timeDate()
 print(start.run)
 print(end.run)
 
-
-setwd("~/Outputs - CSV")
+pathdir.wti.csv <- paste(getwd(),"/Outputs - CSV",sep="")
+setwd(pathdir.wti.csv)
 write.csv(as.data.frame(as.list(price.hist.fc.list)),file=paste("WTI Monte Carlo - ",n," Price Series (",as.character(end(wti.spot.d)),").csv",sep=""))
 write.csv(as.data.frame(as.list(price.hist.fc.list)),file=paste("WTI Monte Carlo - ",n," Price Series (most recent).csv",sep=""))
 
-setwd("~/Outputs - PDF")
+pathdir.wti.pdf <- paste(getwd(),"/Outputs - PDF",sep="")
+setwd(pathdir.wti.pdf)
 pdf(file="WTI Volatility Report.pdf")
 #Plot of Nominal Historical WTI
 plot(wti.spot.m.nom,type="l",format="%Y",col="red",main="Historical WTI Nominal Prices ($US)",xlab="Time",ylab="$US")
